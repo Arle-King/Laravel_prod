@@ -8,8 +8,43 @@
 
 @section('content')
 
-
     <div class="container mt-4">
+
+        <form action="/reg" method="post">
+            @csrf
+
+            <label for="Email">E-mail</label>
+            <input type="text" class="form-control" name="mail" placeholder="Введите E-mail" id="mail">
+            <br>
+
+            <label for="surname">Фамилия</label>
+            <input type="text" class="form-control" name="surname" placeholder="Введите Фамилию" id="surname">
+            <br>
+
+            <label for="name">Имя</label>
+            <input type="text" class="form-control" name="name" placeholder="Введите Имя" id="name">
+            <br>
+
+            <label for="patronymic">Отчество</label>
+            <input type="text" class="form-control" name="patronymic" placeholder="Введите Отчество" id="patronymic">
+            <br>
+
+            <label for="series">Серия паспорта</label>
+            <input type="text" class="form-control" name="series" placeholder="Введите Серия паспорта" id="series">
+            <br>
+
+            <label for="number">Номер паспотра</label>
+            <input type="text" class="form-control" name="number" placeholder="Введите Номер паспотра" id="number">
+            <br> <br>
+
+            <button class="btn btn-success" type="submit">Сохранить</button>
+        </form>
+
+    </div>
+
+
+
+   <!-- <div class="container mt-4">
 
         <form action="/reg" method="post">
             @csrf
@@ -45,10 +80,10 @@
             <button class="btn btn-success" type="submit">Сохранить</button>
         </form>
 
-    </div>
+    </div> -->
 
 
 
-    <!-- <a href="http://laravel1/Account"> Сохранить и войти</a> -->
+ 
 
 @endsection

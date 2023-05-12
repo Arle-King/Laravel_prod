@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Larave_Users extends Model
+class Users_DB extends Model
 {
     //
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLaraveUsersTable extends Migration
+class CreateUsersDBSTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateLaraveUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('larave__users', function (Blueprint $table) {
+        Schema::create('users__d_b_s', function (Blueprint $table) {
             $table->id();
             $table->string('mail');
             $table->string('surname');
@@ -21,7 +21,7 @@ class CreateLaraveUsersTable extends Migration
             $table->string('patronymic');
             $table->string('series');
             $table->string('number');
-            $table->string('password');
+            $table->text('password');
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ class CreateLaraveUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('larave__users');
+        Schema::dropIfExists('users__d_b_s');
     }
 }

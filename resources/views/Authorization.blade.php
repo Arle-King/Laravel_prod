@@ -8,7 +8,29 @@
 
 @section('content')
 
-    <div class="container mt-4">
+<div class="container mt-4">
+
+    <form action="/Auth" method="post">
+    @csrf
+        <label for="mail"> E-mail </label>
+        <input type="text" class="form-control" placeholder="Введите E-mail" name="mail_Auth">
+            <br>
+        <label for="password"> Пароль </label>
+        <input type="password" class="form-control" placeholder="Введите пароль" name="pass_Auth">
+            <br>
+        <button class="btn btn-success" type="submit">Войти</button>
+            <br>
+            <br>
+        <a class="btn btn-success" href="{{route('Registration')}}">Регистрация</a>
+    </form>
+</div>
+
+
+
+
+
+
+<!--<div class="container mt-4">
 
         <form action="/all" method="post">
             @csrf
@@ -24,17 +46,9 @@
             <br> <br>
         </form>
 
-        <a class="btn btn-success" href="{{ route('Registration') }}">Регистрация</a>
 
-        <!-- <h3>E-mail</h3>
-        <input type="text">
-
-        <h3>Пароль</h3>
-        <input type="password"> <br>
-
-        <a href = "{{ route('Account') }}">Войти</a> <br>
-        <a href = "{{ route('Registration') }}">Зтрироваться</a> -->
-    </div>
+        
+    </div>-->
 
 @endsection
 
