@@ -17,15 +17,33 @@ class UsersDBController extends Controller {
     if (strlen($user) == 2) {
       return view('Authorization');
     } else if (strlen($user) == 10) {
+      session(['AccId' => $user[0]['id']]);
       return redirect('/Account/' . $user[0]['id']);
     } else {
       echo 'а что ?';
     }
 
   }
+/*
+  public function OnePerson($id) {  //показ аккаунта
+    if ($id == session()->get('AccId')) {
+    return view('Account', ['data' => Users_DB::find($id)]);
+    } else {
+
+      echo 'lol';
+    }
+  }*/
 
   public function OnePerson($id) {  //показ аккаунта
+    if ($id == session()->get('AccId')) {
     return view('Account', ['data' => Users_DB::find($id)]);
+    } else {
+      $person = Users_DB::find($id);
+      $person['mail'] = '*****************@mail.ru';
+      $person['series'] = '****';
+      $person['number'] = '******';
+      return view('Account', ['data' => $person]);
+    }
   }
 
   public function registr(RegRequest $arr) {  // регистрация пользователя
@@ -71,49 +89,59 @@ class UsersDBController extends Controller {
   }
 
   public function mod(RegRequest $arr) {  // модификация данных пользователя
-    $user = Users_DB::find($arr['id']);
-    $save = false;
+    if (session()->get('AccId') == $arr['id']) {
+      $user = Users_DB::find($arr['id']);
+      $save = false;
 
-    if ($arr['mail'] != $user->mail) {
-      $user->mail = $arr['mail'];
-      $save = true;
-    }
+      if ($arr['mail'] != $user->mail) {
+        $user->mail = $arr['mail'];
+        $save = true;
+      }
 
-    if ($arr['surname'] != $user->surname) {
-      $user->surname = $arr['surname'];
-      $save = true;
-    }
+      if ($arr['surname'] != $user->surname) {
+        $user->surname = $arr['surname'];
+        $save = true;
+      }
 
-    if ($arr['name'] != $user->name) {
-      $user->name = $arr['name'];
-      $save = true;
-    }
+      if ($arr['name'] != $user->name) {
+        $user->name = $arr['name'];
+        $save = true;
+      }
 
-    if ($arr['patronymic'] != $user->patronymic) {
-      $user->patronymic = $arr['patronymic'];
-      $save = true;
-    }
+      if ($arr['patronymic'] != $user->patronymic) {
+        $user->patronymic = $arr['patronymic'];
+        $save = true;
+      }
 
-    if ($arr['series'] != $user->series) {
-      $user->series = $arr['series'];
-      $save = true;
-    }
+      if ($arr['series'] != $user->series) {
+        $user->series = $arr['series'];
+        $save = true;
+      }
 
-    if ($arr['number'] != $user->number) {
-      $user->number = $arr['number'];
-      $save = true;
-    }
+      if ($arr['number'] != $user->number) {
+        $user->number = $arr['number'];
+        $save = true;
+      }
 
-    if ($save == true) {
-      $user->save();
-    }
-    return redirect('/Account/' . $user->id);
+      if ($save == true) {
+        $user->save();
+      }
+      return redirect('/Account/' . $user->id);
+    } 
+    return redirect('/Account/' . session()->get('AccId'));
   }
 
   public function del($id) { // удаление аккаунта
-    $user = Users_DB::find($id);
-    $user->delete();
-    return redirect()->route('Authorization');
+    if (session()->get('AccId') == $id) {
+
+      $user = Users_DB::find($id);
+      $user->delete();
+      return redirect()->route('Authorization');
+
+    } else {
+      return redirect('/Account/' . session()->get('AccId'));
+    }
+
   }
 }
   

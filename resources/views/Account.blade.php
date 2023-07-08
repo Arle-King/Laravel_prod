@@ -17,7 +17,7 @@
             <input type="hidden" name="id" value="{{$data->id}}">
 
             <label for="Email">E-mail</label>
-            <input type="text" class="form-control" name="mail" value="{{$data->mail}}" id="mail">
+            <input type="text" class="form-control" name="mail" value="{{$data->mail}}" id="mail" > 
             <br>
 
             <label for="surname">Фамилия</label>
@@ -37,11 +37,11 @@
             <br>
 
             <label for="number">Номер паспотра</label>
-            <input type="text" class="form-control" name="number" value="{{$data->number}}" id="number">
+            <input type="text" class="form-control" name="number" value="{{$data->number}}" id="number" >
             <br>
 
             
-            <button class="btn btn-success" type="submit">Изменить</button>
+            <button class="btn btn-success" type="submit" >Изменить</button>
             <br> <br>
             <a class="btn btn-success" href="{{ route('Authorization') }}"> Выход из аккаунта</a>
         </form>
